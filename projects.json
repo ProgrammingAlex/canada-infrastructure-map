@@ -95,4 +95,64 @@
 		"latitude" : 45.500000,
 		"longitude" : -73.570000
 	}
+		
 ]
+[
+  {
+    "name": "Eglinton Crosstown LRT",
+    "status": "Completed",
+    "budget": 12500000000,
+    "province": "Ontario",
+    "latitude": 43.7000,
+    "longitude": -79.4300
+  },
+  {
+    "name": "GO Expansion – ON-Corridor Works",
+    "status": "Completed",
+    "budget": 15700000000,
+    "province": "Ontario",
+    "latitude": 43.6532,
+    "longitude": -79.3832
+  },
+  {
+    "name": "Bruce Power Refurbishment",
+    "status": "Completed",
+    "budget": 13000000000,
+    "province": "Ontario",
+    "latitude": 44.3167,
+    "longitude": -81.5747
+  },
+  {
+    "name": "Alaska Highway Pink Mountain intersection improvements",
+    "status": "Completed",
+    "budget": 25000000,
+    "province": "British Columbia",
+    "latitude": 57.0096,
+    "longitude": -122.5164
+  },
+  {
+    "name": "National War Memorial Restoration",
+    "status": "Completed",
+    "budget": 5962000,
+    "province": "Ontario",
+    "latitude": 45.4256,
+    "longitude": -75.7007
+  },
+  {
+    "name": "Voltigeurs de Québec Armoury Reconstruction",
+    "status": "Completed",
+    "budget": 100000000,
+    "province": "Quebec",
+    "latitude": 46.8147,
+    "longitude": -71.2100
+  },
+  {
+    "name": "Des Joachims Bridge Repair",
+    "status": "Completed",
+    "budget": 5000000,
+    "province": "Quebec",
+    "latitude": 46.2950,
+    "longitude": -78.0617
+  }
+]
+
