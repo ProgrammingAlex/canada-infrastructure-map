@@ -2,8 +2,8 @@
 function getMarkerIcon(status) {
   return L.icon({
     iconUrl: status === "Completed" 
-      ? "marker-green.png" 
-      : "marker-blue.png",
+      ? "marker-icon-green.png" 
+      : "marker-icon-blue.png",
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [0, -40],
