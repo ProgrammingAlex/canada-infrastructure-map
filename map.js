@@ -1,25 +1,39 @@
-// Create the map centered on Canada
+// Custom marker icons
+function getMarkerIcon(status) {
+  return L.icon({
+    iconUrl: status === "Completed" 
+      ? "marker-green.png" 
+      : "marker-blue.png",
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [0, -40],
+    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png'
+  });
+}
+
+// Initialize map
 const map = L.map('map').setView([56.1304, -106.3468], 4);
 
-// Add OpenStreetMap tiles
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 18,
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-// Load project data from projects.json
+// Fetch and display projects
 fetch('projects.json')
   .then(res => res.json())
   .then(projects => {
     projects.forEach(p => {
       if (p.latitude && p.longitude) {
-        L.marker([p.latitude, p.longitude])
+        L.marker([p.latitude, p.longitude], { icon: getMarkerIcon(p.status) })
           .addTo(map)
           .bindPopup(
-            `<b>${p.name}</b><br>` +
-            `${p.status}<br>` +
-            `${p.province}<br>` +
-            `Budget: $${p.budget.toLocaleString()}`
+            `<div style="font-size:1.04em;">
+               <b>${p.name}</b><br>
+               <strong>Province:</strong> ${p.province}<br>
+               <strong>Status:</strong> ${p.status}<br>
+               <strong>Budget:</strong> $${(+p.budget).toLocaleString()}
+             </div>`
           );
       }
     });
