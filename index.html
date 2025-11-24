@@ -2,16 +2,47 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Canadian Infrastructure Map</title>
+  <title>Canadian Infrastructure Projects</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
-    #map { height: 600px; width: 100%; }
+    body {
+      background: #f5f8fa;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    #map {
+      height: 600px;
+      border-radius: 10px;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.12);
+      margin-bottom: 2em;
+    }
+    h1 {
+      text-align: center;
+      margin: 1em 0 0.5em 0;
+    }
+    .legend {
+      background: white;
+      border-radius: 6px;
+      padding: 10px 16px;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      z-index: 1001;
+      font-size: 1rem;
+    }
+    .legend img {
+      vertical-align: middle;
+      margin-right: 6px;
+    }
   </style>
 </head>
 <body>
   <h1>Canadian Infrastructure Projects</h1>
   <div id="map"></div>
-
+  <div class="legend">
+    <img src="marker-blue.png" width="25" height="41"/> Planned &nbsp;
+    <img src="marker-green.png" width="25" height="41"/> Completed
+  </div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="map.js"></script>
 </body>
