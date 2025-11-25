@@ -8,6 +8,7 @@
         .admin-box { background: #fff; border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,0.08); padding: 2em; max-width: 410px; margin: 40px auto; }
         input, select, textarea { width: 100%; margin-bottom: 16px; padding: 8px; font-size:1em; border-radius: 5px; border:1px solid #ccc;}
         button { padding: 0.7em 2em; font-size:1em; border: none; border-radius: 8px; background: #37ad5c; color: #fff; cursor: pointer;}
+        #back-btn { background: #4477b6; }
         .hidden { display:none;}
         .error { color: #d21034; margin-bottom: 16px;}
     </style>
@@ -30,12 +31,14 @@
             </select>
             <input id="budget" type="number" placeholder="Budget (CAD)">
             <input id="province" placeholder="Province">
-            <input id="latitude" type="number" placeholder="Latitude">
-            <input id="longitude" type="number" placeholder="Longitude">
+            <input id="city" placeholder="City/Town (optional)">
+            <input id="latitude" type="number" placeholder="Latitude (optional)">
+            <input id="longitude" type="number" placeholder="Longitude (optional)">
             <textarea id="description" placeholder="Description"></textarea>
             <textarea id="reason" placeholder="Reason"></textarea>
             <input id="planneddate" type="date" placeholder="Planned date">
             <button id="save-btn">Save Project</button>
+            <button id="back-btn" style="margin-top:10px;">Back</button>
         </div>
     </div>
 <script>
@@ -58,16 +61,21 @@ document.getElementById('save-btn').onclick = function() {
         status: document.getElementById('status').value,
         budget: parseFloat(document.getElementById('budget').value),
         province: document.getElementById('province').value,
-        latitude: parseFloat(document.getElementById('latitude').value),
-        longitude: parseFloat(document.getElementById('longitude').value),
+        city: document.getElementById('city').value,
+        latitude: parseFloat(document.getElementById('latitude').value) || null,
+        longitude: parseFloat(document.getElementById('longitude').value) || null,
         description: document.getElementById('description').value,
         reason: document.getElementById('reason').value,
         planneddate: document.getElementById('planneddate').value
     };
 
-    // Temporary save (local only)
     localStorage.setItem('pendingProject', JSON.stringify(project));
     alert("Project ready to load! Switch back to main map.");
+    window.location.href = "index.html";
+};
+
+// Back button
+document.getElementById('back-btn').onclick = function() {
     window.location.href = "index.html";
 };
 </script>
