@@ -59,7 +59,11 @@ function updateMarkers() {
         ).addTo(markerGroup);
     });
 }
-
+<script>
+document.getElementById("admin-access-btn").addEventListener("click", function() {
+    window.location.href = "admin.html";
+});
+</script>
 fetch('projects.json')
   .then(res => res.json())
   .then(data => {
