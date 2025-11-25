@@ -7,7 +7,8 @@
     "latitude": 49.665393,
     "longitude": -123.253666,
     "description": "A proposed liquefied natural gas export facility in Squamish, BC.",
-    "reason": "Boost natural gas export capacity and local jobs."
+    "reason": "Boost natural gas export capacity and local jobs.",
+    "planned_date": "2015-04-01"
   },
   {
     "name": "Nuclear Waste Management Repository",
@@ -17,7 +18,8 @@
     "latitude": 49.400000,
     "longitude": -91.670000,
     "description": "Repository for long-term, safe containment of nuclear waste near Ignace, ON.",
-    "reason": "Protect environment and public health."
+    "reason": "Protect environment and public health.",
+    "planned_date": "2017-09-14"
   },
   {
     "name": "Alberta Transmission Line Expansion",
@@ -26,8 +28,9 @@
     "province": "Alberta",
     "latitude": 53.540000,
     "longitude": -113.490000,
-    "description": "Expansion of high-voltage transmission capacity for Alberta’s power grid.",
-    "reason": "Support population growth and renewable integration."
+    "description": "Expansion of high-voltage transmission capacity for Alberta’s grid.",
+    "reason": "Support population growth and renewable energy.",
+    "planned_date": "2019-06-20"
   },
   {
     "name": "Arctic Gateway Railway System",
@@ -37,7 +40,8 @@
     "latitude": 58.770000,
     "longitude": -94.170000,
     "description": "Expansion and modernization of the Arctic Gateway rail corridor.",
-    "reason": "Connect remote communities and promote economic development."
+    "reason": "Connect remote communities and promote economic development.",
+    "planned_date": "2018-12-01"
   },
   {
     "name": "Ring of Fire Chromite Mining Development",
@@ -47,7 +51,8 @@
     "latitude": 52.800000,
     "longitude": -86.000000,
     "description": "Mining and infrastructure in the Ring of Fire region, northern Ontario.",
-    "reason": "Provide critical minerals for manufacturing and support remote jobs."
+    "reason": "Provide critical minerals and support remote jobs.",
+    "planned_date": "2017-04-30"
   },
   {
     "name": "Atlantic Loop Transmission Project",
@@ -57,7 +62,8 @@
     "latitude": 45.960000,
     "longitude": -66.640000,
     "description": "Regional transmission upgrade to share clean power across Atlantic provinces.",
-    "reason": "Increase renewable power and grid reliability."
+    "reason": "Increase renewable power and grid reliability.",
+    "planned_date": "2020-02-28"
   },
   {
     "name": "Coastal GasLink Pipeline",
@@ -67,7 +73,8 @@
     "latitude": 54.400000,
     "longitude": -126.650000,
     "description": "Natural gas pipeline running from northeast BC to the coast.",
-    "reason": "Increase export opportunities and local investment."
+    "reason": "Increase export opportunities and local investment.",
+    "planned_date": "2014-10-10"
   },
   {
     "name": "Darlington Refurbishment",
@@ -77,7 +84,8 @@
     "latitude": 43.900000,
     "longitude": -78.720000,
     "description": "Major refurbishment of Darlington Nuclear Generating Station.",
-    "reason": "Extend lifespan of clean nuclear generation."
+    "reason": "Extend lifespan of clean nuclear generation.",
+    "planned_date": "2016-03-01"
   },
   {
     "name": "Site C Clean Energy Project",
@@ -87,7 +95,8 @@
     "latitude": 56.194720,
     "longitude": -120.914170,
     "description": "Construction of a new hydroelectric dam on the Peace River.",
-    "reason": "Increase clean electricity supply for BC."
+    "reason": "Increase clean electricity supply for BC.",
+    "planned_date": "2014-01-15"
   },
   {
     "name": "Pacific Institute for Climate Solutions",
@@ -97,7 +106,8 @@
     "latitude": 48.460000,
     "longitude": -123.310000,
     "description": "Expansion of climate research and collaboration hub at University of Victoria.",
-    "reason": "Advance climate action and science."
+    "reason": "Advance climate action and science.",
+    "planned_date": "2022-07-11"
   },
   {
     "name": "Canadian Northern Economic Development Project",
@@ -107,7 +117,8 @@
     "latitude": 62.450000,
     "longitude": -114.380000,
     "description": "Economic development initiative focused on Northwest Territories and Northern Canada.",
-    "reason": "Support jobs and sustainable growth in remote areas."
+    "reason": "Support jobs and sustainable growth in remote areas.",
+    "planned_date": "2021-05-01"
   },
   {
     "name": "Quebec REM Light Rail Transit Extension",
@@ -117,6 +128,7 @@
     "latitude": 45.500000,
     "longitude": -73.570000,
     "description": "Expansion of Montreal’s REM automated light rail transit system.",
-    "reason": "Improve public transit and urban mobility."
+    "reason": "Improve public transit and urban mobility.",
+    "planned_date": "2019-04-18"
   }
 ]
