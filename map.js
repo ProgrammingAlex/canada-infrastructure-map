@@ -63,6 +63,15 @@ function updateMarkers() {
 document.getElementById("admin-access-btn").addEventListener("click", function() {
     window.location.href = "admin.html";
 });
+// Check for pending new project from admin page
+if(localStorage.getItem('pendingProject')) {
+    try {
+        const newProj = JSON.parse(localStorage.getItem('pendingProject'));
+        allProjects.push(newProj);
+        localStorage.removeItem('pendingProject'); // Clear out so it doesn't reload each time
+        updateMarkers();
+    } catch(e) { /* ignore if no valid data */ }
+}
 </script>
 fetch('projects.json')
   .then(res => res.json())
