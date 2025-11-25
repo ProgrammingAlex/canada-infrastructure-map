@@ -1,3 +1,28 @@
+// Helper function to compute time since planned
+function timeSincePlanned(dateStr) {
+  const planned = new Date(dateStr);
+  const now = new Date();
+  let years = now.getFullYear() - planned.getFullYear();
+  let months = now.getMonth() - planned.getMonth();
+  let days = now.getDate() - planned.getDate();
+
+  if (days < 0) {
+    months -= 1;
+    days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+  }
+  if (months < 0) {
+    years -= 1;
+    months += 12;
+  }
+
+  let parts = [];
+  if (years > 0) parts.push(`${years} year${years > 1 ? "s" : ""}`);
+  if (months > 0) parts.push(`${months} month${months > 1 ? "s" : ""}`);
+  if (years === 0 && months === 0) parts.push(`${days} day${days > 1 ? "s" : ""}`);
+
+  return parts.join(", ") + " ago";
+}
+
 // Custom marker icon for 'Planned'
 function getMarkerIcon() {
   return L.icon({
@@ -31,7 +56,8 @@ fetch('projects.json')
                <strong>Province:</strong> ${p.province}<br>
                <strong>Planned Budget:</strong> $${(+p.budget).toLocaleString()}<br>
                <strong>About:</strong> ${p.description}<br>
-               <strong>Why planned:</strong> ${p.reason}
+               <strong>Why planned:</strong> ${p.reason}<br>
+               <strong>Planned:</strong> ${p.planned_date} (${timeSincePlanned(p.planned_date)})
             </div>`
           );
       }
