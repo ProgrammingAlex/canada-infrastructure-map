@@ -2,75 +2,61 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Admin Panel - Projects</title>
+    <title>Canadian Infrastructure Projects Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
-        body { background: #f5f8fa; font-family: Segoe UI, Arial; padding: 2em; }
-        .admin-box { background: #fff; border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,0.08); padding: 2em; max-width: 410px; margin: 40px auto; }
-        input, select, textarea { width: 100%; margin-bottom: 16px; padding: 8px; font-size:1em; border-radius: 5px; border:1px solid #ccc;}
-        button { padding: 0.7em 2em; font-size:1em; border: none; border-radius: 8px; background: #37ad5c; color: #fff; cursor: pointer;}
-        .hidden { display:none;}
-        .error { color: #d21034; margin-bottom: 16px;}
+        body { background: #f5f8fa; font-family: Segoe UI, Arial, sans-serif; margin: 0; }
+        header { text-align: center; padding: 1em 0 0.5em 0; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        #controls { margin: 20px auto; text-align: center; }
+        #map { height: 600px; border-radius: 10px; box-shadow: 0 2px 24px rgba(0,0,0,0.12); margin: 0 auto 2em auto; width: 90vw; max-width: 1200px;}
+        .legend { background: white; border-radius: 6px; padding: 10px 16px; box-shadow: 0 1px 8px rgba(0,0,0,0.08); position: absolute; bottom: 24px; left: 24px; z-index: 1001; font-size: 1rem;}
+        .legend img { vertical-align: middle; margin-right: 6px;}
+        footer { text-align: center; padding: 1em 0; color: #6c757d; background: #fafbfd; font-size: 1em;}
+        @media (max-width: 700px) { #map { height: 350px;} }
     </style>
 </head>
 <body>
-    <div class="admin-box">
-        <h2>Admin Login</h2>
-        <div id="login-box">
-            <input id="username" type="text" placeholder="Username" />
-            <input id="password" type="password" placeholder="Password" />
-            <button id="login-btn">Login</button>
-            <div id="login-error" class="error"></div>
-        </div>
-        <div id="form-box" class="hidden">
-            <h2>Add Project</h2>
-            <input id="name" placeholder="Project name">
-            <select id="status">
-                <option value="Planned">Planned</option>
-                <option value="In-Progress">In-Progress</option>
-            </select>
-            <input id="budget" type="number" placeholder="Budget (CAD)">
-            <input id="province" placeholder="Province">
-            <input id="latitude" type="number" placeholder="Latitude">
-            <input id="longitude" type="number" placeholder="Longitude">
-            <textarea id="description" placeholder="Description"></textarea>
-            <textarea id="reason" placeholder="Reason"></textarea>
-            <input id="planneddate" type="date" placeholder="Planned date">
-            <button id="save-btn">Save Project</button>
-        </div>
+    <header>
+        <h1>Canadian Infrastructure Projects</h1>
+        <p>A map of major planned infrastructure across Canada.<br>
+        <small>Select filters to explore the data.</small></p>
+    </header>
+    <div id="controls">
+        <button id="admin-access-btn">Admin Panel</button>
+        <label for="province-filter"><strong>Province</strong></label>
+        <select id="province-filter">
+            <option value="All">All</option>
+            <option value="British Columbia">British Columbia</option>
+            <option value="Ontario">Ontario</option>
+            <option value="Alberta">Alberta</option>
+            <option value="New Brunswick">New Brunswick</option>
+            <option value="Northwest Territories">Northwest Territories</option>
+            <option value="Quebec">Quebec</option>
+            <option value="Northern Canada">Northern Canada</option>
+        </select>
+        <label for="budget-filter" style="margin-left:16px;"><strong>Min Budget (B)</strong></label>
+        <select id="budget-filter">
+            <option value="0">Any</option>
+            <option value="1">1</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+        </select>
     </div>
-<script>
-// Simple local login
-document.getElementById('login-btn').onclick = function() {
-    var u = document.getElementById('username').value;
-    var p = document.getElementById('password').value;
-    if (u === 'admin' && p === 'admin') {
-        document.getElementById('login-box').classList.add('hidden');
-        document.getElementById('form-box').classList.remove('hidden');
-    } else {
-        document.getElementById('login-error').innerText = "Wrong username or password!";
-    }
-};
-
-// Collect project info and send to map (you'll need a backend or API for persistent save)
-document.getElementById('save-btn').onclick = function() {
-    // Read data
-    var project = {
-        name: document.getElementById('name').value,
-        status: document.getElementById('status').value,
-        budget: parseFloat(document.getElementById('budget').value),
-        province: document.getElementById('province').value,
-        latitude: parseFloat(document.getElementById('latitude').value),
-        longitude: parseFloat(document.getElementById('longitude').value),
-        description: document.getElementById('description').value,
-        reason: document.getElementById('reason').value,
-        planneddate: document.getElementById('planneddate').value
-    };
-
-    // Save (for now, local only, you will need backend/API for actual update)
-    localStorage.setItem('pendingProject', JSON.stringify(project));
-    alert("Project ready to load! Switch back to main page.");
-    window.location.href = "index.html";
-};
-</script>
+    <div id="map"></div>
+    <div class="legend" style="position:static;margin:0 auto 12px auto;text-align:center;box-shadow:none;">
+        <img src="marker-icon-blue.jpg" width="25" height="41" alt="Planned marker"><span style="margin-right:20px;"><strong>Planned</strong></span>
+        <img src="marker-icon-green.jpg" width="25" height="41" alt="In-Progress marker"><span><strong>In-Progress</strong></span>
+    </div>
+    <footer>
+        &copy; 2025 Alex, Ethan, Nathan &mdash; Data from public sources. Last updated November 24, 2025.
+    </footer>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="map.js"></script>
+    <script>
+      document.getElementById("admin-access-btn").addEventListener("click", function() {
+        window.location.href = "admin.html";
+      });
+    </script>
 </body>
 </html>
