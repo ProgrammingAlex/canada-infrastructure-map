@@ -26,7 +26,7 @@ function timeSince(plannedDateStr) {
 // Helper: choose marker icon by status
 function getMarkerIcon(status) {
     return L.icon({
-        iconUrl: status === "In-Progress" ? "marker-icon-green.jpg" : "marker-icon-blue.jpg",
+        iconUrl: status === "In-Progress" ? "marker-icon-green.png" : "marker-icon-blue.png",
         iconSize: [25, 41],
         iconAnchor: [12, 41],
         popupAnchor: [0, -40],
@@ -61,6 +61,7 @@ function updateMarkers() {
                         <b>${p.name}</b><br>
                         <strong>Status:</strong> ${p.status}<br>
                         <strong>Province:</strong> ${p.province}<br>
+                        <strong>City/Town:</strong> ${p.city || "N/A"}<br>
                         <strong>Budget:</strong> ${Number(p.budget).toLocaleString()}<br>
                         <strong>About:</strong> ${p.description}<br>
                         <strong>Why Planned:</strong> ${p.reason}<br>
@@ -77,7 +78,7 @@ fetch("projects.json")
     .then(data => {
         allProjects = data;
 
-        // Add pending new project from admin.html (localStorage based)
+        // Add pending new project from admin.html (localStorage-based)
         if (localStorage.getItem("pendingProject")) {
             try {
                 const newProj = JSON.parse(localStorage.getItem("pendingProject"));
