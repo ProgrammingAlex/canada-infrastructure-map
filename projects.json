@@ -1,154 +1,98 @@
 [
-  {
-    "name" : "Woodfibre LNG Project",
-    "status" : "Planned",
-    "budget" : 6900000000.00,
-    "province" : "British Columbia",
-    "latitude" : 49.665393,
-    "longitude" : -123.253666
-  },
-  {
-    "name" : "Nuclear Waste Management Repository",
-    "status" : "Planned",
-    "budget" : 26000000000.00,
-    "province" : "Ontario",
-    "latitude" : 49.400000,
-    "longitude" : -91.670000
-  },
-  {
-    "name" : "Alberta Transmission Line Expansion",
-    "status" : "Planned",
-    "budget" : 1500000000.00,
-    "province" : "Alberta",
-    "latitude" : 53.540000,
-    "longitude" : -113.490000
-  },
-  {
-    "name" : "Arctic Gateway Railway System",
-    "status" : "Planned",
-    "budget" : 2600000000.00,
-    "province" : "Northern Canada",
-    "latitude" : 58.770000,
-    "longitude" : -94.170000
-  },
-  {
-    "name" : "Ring of Fire Chromite Mining Development",
-    "status" : "Planned",
-    "budget" : 2000000000.00,
-    "province" : "Ontario",
-    "latitude" : 52.800000,
-    "longitude" : -86.000000
-  },
-  {
-    "name" : "Atlantic Loop Transmission Project",
-    "status" : "Planned",
-    "budget" : 1400000000.00,
-    "province" : "New Brunswick",
-    "latitude" : 45.960000,
-    "longitude" : -66.640000
-  },
-  {
-    "name" : "Coastal GasLink Pipeline",
-    "status" : "Planned",
-    "budget" : 6600000000.00,
-    "province" : "British Columbia",
-    "latitude" : 54.400000,
-    "longitude" : -126.650000
-  },
-  {
-    "name" : "Darlington Refurbishment",
-    "status" : "Planned",
-    "budget" : 12000000000.00,
-    "province" : "Ontario",
-    "latitude" : 43.900000,
-    "longitude" : -78.720000
-  },
-  {
-    "name" : "Site C Clean Energy Project",
-    "status" : "Planned",
-    "budget" : 10700000000.00,
-    "province" : "British Columbia",
-    "latitude" : 56.194720,
-    "longitude" : -120.914170
-  },
-  {
-    "name" : "Pacific Institute for Climate Solutions",
-    "status" : "Planned",
-    "budget" : 500000000.00,
-    "province" : "British Columbia",
-    "latitude" : 48.460000,
-    "longitude" : -123.310000
-  },
-  {
-    "name" : "Canadian Northern Economic Development Project",
-    "status" : "Planned",
-    "budget" : 1000000000.00,
-    "province" : "Northwest Territories",
-    "latitude" : 62.450000,
-    "longitude" : -114.380000
-  },
-  {
-    "name" : "Quebec REM Light Rail Transit Extension",
-    "status" : "Planned",
-    "budget" : 6000000000.00,
-    "province" : "Quebec",
-    "latitude" : 45.500000,
-    "longitude" : -73.570000
-  },
-  {
-    "name": "Eglinton Crosstown LRT",
-    "status": "Completed",
-    "budget": 12500000000,
-    "province": "Ontario",
-    "latitude": 43.7000,
-    "longitude": -79.4300
-  },
-  {
-    "name": "GO Expansion – ON-Corridor Works",
-    "status": "Completed",
-    "budget": 15700000000,
-    "province": "Ontario",
-    "latitude": 43.6532,
-    "longitude": -79.3832
-  },
-  {
-    "name": "Bruce Power Refurbishment",
-    "status": "Completed",
-    "budget": 13000000000,
-    "province": "Ontario",
-    "latitude": 44.3167,
-    "longitude": -81.5747
-  },
-  {
-    "name": "Alaska Highway Pink Mountain intersection improvements",
-    "status": "Completed",
-    "budget": 25000000,
-    "province": "British Columbia",
-    "latitude": 57.0096,
-    "longitude": -122.5164
-  },
-  {
-    "name": "National War Memorial Restoration",
-    "status": "Completed",
-    "budget": 5962000,
-    "province": "Ontario",
-    "latitude": 45.4256,
-    "longitude": -75.7007
-  },
-  {
-    "name": "Voltigeurs de Québec Armoury Reconstruction",
-    "status": "Completed",
-    "budget": 100000000,
-    "province": "Quebec",
-    "latitude": 46.8147,
-    "longitude": -71.2100
-  },
-  {
-    "name": "Des Joachims Bridge Repair",
-    "status": "Completed",
-    "budget": 5000000,
-    "province": "Quebec",
-    "latitude": 46.2950,
-    "longitude": -78.0617
-  }
+	{
+		"name" : "Woodfibre LNG Project",
+		"status" : "Planned",
+		"budget" : 6900000000.00,
+		"province" : "British Columbia",
+		"latitude" : 49.665393,
+		"longitude" : -123.253666
+	},
+	{
+		"name" : "Nuclear Waste Management Repository",
+		"status" : "Planned",
+		"budget" : 26000000000.00,
+		"province" : "Ontario",
+		"latitude" : 49.400000,
+		"longitude" : -91.670000
+	},
+	{
+		"name" : "Alberta Transmission Line Expansion",
+		"status" : "Planned",
+		"budget" : 1500000000.00,
+		"province" : "Alberta",
+		"latitude" : 53.540000,
+		"longitude" : -113.490000
+	},
+	{
+		"name" : "Arctic Gateway Railway System",
+		"status" : "Planned",
+		"budget" : 2600000000.00,
+		"province" : "Northern Canada",
+		"latitude" : 58.770000,
+		"longitude" : -94.170000
+	},
+	{
+		"name" : "Ring of Fire Chromite Mining Development",
+		"status" : "Planned",
+		"budget" : 2000000000.00,
+		"province" : "Ontario",
+		"latitude" : 52.800000,
+		"longitude" : -86.000000
+	},
+	{
+		"name" : "Atlantic Loop Transmission Project",
+		"status" : "Planned",
+		"budget" : 1400000000.00,
+		"province" : "New Brunswick",
+		"latitude" : 45.960000,
+		"longitude" : -66.640000
+	},
+	{
+		"name" : "Coastal GasLink Pipeline",
+		"status" : "Planned",
+		"budget" : 6600000000.00,
+		"province" : "British Columbia",
+		"latitude" : 54.400000,
+		"longitude" : -126.650000
+	},
+	{
+		"name" : "Darlington Refurbishment",
+		"status" : "Planned",
+		"budget" : 12000000000.00,
+		"province" : "Ontario",
+		"latitude" : 43.900000,
+		"longitude" : -78.720000
+	},
+	{
+		"name" : "Site C Clean Energy Project",
+		"status" : "Planned",
+		"budget" : 10700000000.00,
+		"province" : "British Columbia",
+		"latitude" : 56.194720,
+		"longitude" : -120.914170
+	},
+	{
+		"name" : "Pacific Institute for Climate Solutions",
+		"status" : "Planned",
+		"budget" : 500000000.00,
+		"province" : "British Columbia",
+		"latitude" : 48.460000,
+		"longitude" : -123.310000
+	},
+	{
+		"name" : "Canadian Northern Economic Development Project",
+		"status" : "Planned",
+		"budget" : 1000000000.00,
+		"province" : "Northwest Territories",
+		"latitude" : 62.450000,
+		"longitude" : -114.380000
+	},
+	{
+		"name" : "Quebec REM Light Rail Transit Extension",
+		"status" : "Planned",
+		"budget" : 6000000000.00,
+		"province" : "Quebec",
+		"latitude" : 45.500000,
+		"longitude" : -73.570000
+	}
 ]
