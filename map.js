@@ -14,9 +14,11 @@ function timeSincePlanned(dateStr) {
   return parts.join(", ") + " ago";
 }
 
-function getMarkerIcon() {
+function getMarkerIcon(status) {
   return L.icon({
-    iconUrl: "marker-icon-blue.png",
+    iconUrl: status === "In-Progress"
+      ? "marker-icon-green.png"
+      : "marker-icon-blue.png",
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [0, -40],
@@ -38,21 +40,21 @@ function updateMarkers() {
   const minBudget = parseFloat(document.getElementById("budget-filter").value || "0") * 1e9;
   allProjects
     .filter(p =>
-      p.status === "Planned" &&
       (province === "All" || p.province === province) &&
       p.budget >= minBudget &&
       p.latitude && p.longitude
     )
     .forEach(p => {
-      L.marker([p.latitude, p.longitude], { icon: getMarkerIcon() })
+      L.marker([p.latitude, p.longitude], { icon: getMarkerIcon(p.status) })
         .bindPopup(
           `<div style="font-size:1.04em;">
              <b>${p.name}</b><br>
+             <strong>Status:</strong> ${p.status}<br>
              <strong>Province:</strong> ${p.province}<br>
-             <strong>Planned Budget:</strong> $${(+p.budget).toLocaleString()}<br>
+             <strong>Budget:</strong> $${(+p.budget).toLocaleString()}<br>
              <strong>About:</strong> ${p.description}<br>
              <strong>Why planned:</strong> ${p.reason}<br>
-             <strong>Planned:</strong> ${p.planned_date} (${timeSincePlanned(p.planned_date)})
+             <strong>Since:</strong> ${p.planned_date} (${timeSincePlanned(p.planned_date)})
           </div>`
         ).addTo(markerGroup);
     });
