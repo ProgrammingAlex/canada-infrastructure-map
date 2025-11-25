@@ -1,13 +1,11 @@
-// Custom marker icons
-function getMarkerIcon(status) {
+// Custom marker icon for 'Planned'
+function getMarkerIcon() {
   return L.icon({
-    iconUrl: status === "Completed" 
-      ? "marker-icon-green.png" 
-      : "marker-icon-blue.png",
+    iconUrl: "marker-icon-blue.png",
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [0, -40],
-    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png'
+    shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png"
   });
 }
 
@@ -19,21 +17,22 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-// Fetch and display projects
+// Fetch and display planned projects
 fetch('projects.json')
   .then(res => res.json())
   .then(projects => {
     projects.forEach(p => {
-      if (p.latitude && p.longitude) {
-        L.marker([p.latitude, p.longitude], { icon: getMarkerIcon(p.status) })
+      if (p.status === "Planned" && p.latitude && p.longitude) {
+        L.marker([p.latitude, p.longitude], { icon: getMarkerIcon() })
           .addTo(map)
           .bindPopup(
             `<div style="font-size:1.04em;">
                <b>${p.name}</b><br>
                <strong>Province:</strong> ${p.province}<br>
-               <strong>Status:</strong> ${p.status}<br>
-               <strong>Budget:</strong> $${(+p.budget).toLocaleString()}
-             </div>`
+               <strong>Planned Budget:</strong> $${(+p.budget).toLocaleString()}<br>
+               <strong>About:</strong> ${p.description}<br>
+               <strong>Why planned:</strong> ${p.reason}
+            </div>`
           );
       }
     });
