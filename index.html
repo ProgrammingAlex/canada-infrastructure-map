@@ -2,22 +2,31 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Canadian Infrastructure Projects</title>
+  <title>Canadian Infrastructure Projects Map</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     body {
       background: #f5f8fa;
       font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+    }
+    header {
+      text-align: center;
+      padding: 1em 0 0.5em 0;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    #controls {
+      margin: 20px auto;
+      text-align: center;
     }
     #map {
       height: 600px;
       border-radius: 10px;
       box-shadow: 0 2px 24px rgba(0,0,0,0.12);
-      margin-bottom: 2em;
-    }
-    h1 {
-      text-align: center;
-      margin: 1em 0 0.5em 0;
+      margin: 0 auto 2em auto;
+      width: 90vw;
+      max-width: 1200px;
     }
     .legend {
       background: white;
@@ -34,14 +43,56 @@
       vertical-align: middle;
       margin-right: 6px;
     }
+    footer {
+      text-align: center;
+      padding: 1em 0;
+      color: #6c757d;
+      background: #fafbfd;
+      font-size: 1em;
+    }
+    @media (max-width: 700px) {
+      #map { height: 350px; }
+    }
   </style>
 </head>
 <body>
-  <h1>Canadian Infrastructure Projects</h1>
+  <header>
+    <h1>Canadian Infrastructure Projects</h1>
+    <p>A map of major planned infrastructure across Canada for educational review.<br>
+       <small>Select filters to explore the data.</small></p>
+  </header>
+
+  <div id="controls">
+    <label for="province-filter"><strong>Province:</strong></label>
+    <select id="province-filter">
+      <option value="All">All</option>
+      <option value="British Columbia">British Columbia</option>
+      <option value="Ontario">Ontario</option>
+      <option value="Alberta">Alberta</option>
+      <option value="New Brunswick">New Brunswick</option>
+      <option value="Northwest Territories">Northwest Territories</option>
+      <option value="Quebec">Quebec</option>
+      <option value="Northern Canada">Northern Canada</option>
+    </select>
+
+    <label for="budget-filter" style="margin-left:16px;"><strong>Min Budget ($B):</strong></label>
+    <select id="budget-filter">
+      <option value="0">Any</option>
+      <option value="1">1</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+    </select>
+  </div>
+
   <div id="map"></div>
   <div class="legend">
-    <img src="marker-icon-blue.png" width="25" height="41"/> Planned
+    <img src="marker-icon-blue.png" width="25" height="41" alt="Planned marker"/>
+    Planned project
   </div>
+  <footer>
+    © 2025 ProgrammingAlex | Data from public sources | Last updated: November 24, 2025
+  </footer>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="map.js"></script>
 </body>
