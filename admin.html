@@ -9,8 +9,10 @@
         input, select, textarea { width: 100%; margin-bottom: 16px; padding: 8px; font-size:1em; border-radius: 5px; border:1px solid #ccc;}
         button { padding: 0.7em 2em; font-size:1em; border: none; border-radius: 8px; background: #37ad5c; color: #fff; cursor: pointer;}
         #back-btn { background: #4477b6; }
+        #lookup-btn { background: #FFA500; }
         .hidden { display:none;}
         .error { color: #d21034; margin-bottom: 16px;}
+        .info { color: #448811; margin-bottom: 16px;}
     </style>
 </head>
 <body>
@@ -31,9 +33,12 @@
             </select>
             <input id="budget" type="number" placeholder="Budget (CAD)">
             <input id="province" placeholder="Province">
-            <input id="city" placeholder="City/Town (optional)">
-            <input id="latitude" type="number" placeholder="Latitude (optional)">
-            <input id="longitude" type="number" placeholder="Longitude (optional)">
+            <input id="city" placeholder="City/Town">
+            <input id="country" placeholder="Country">
+            <button id="lookup-btn" type="button">Lookup coordinates</button>
+            <input id="latitude" type="number" step="any" placeholder="Latitude (auto)">
+            <input id="longitude" type="number" step="any" placeholder="Longitude (auto)">
+            <div id="lookup-info" class="info"></div>
             <textarea id="description" placeholder="Description"></textarea>
             <textarea id="reason" placeholder="Reason"></textarea>
             <input id="planneddate" type="date" placeholder="Planned date">
@@ -54,7 +59,36 @@ document.getElementById('login-btn').onclick = function() {
     }
 };
 
-// Collect project info and send to main map page (local only)
+// Geocoding via Nominatim for city/province/country to coordinates
+document.getElementById('lookup-btn').onclick = function() {
+    var city = document.getElementById('city').value.trim();
+    var province = document.getElementById('province').value.trim();
+    var country = document.getElementById('country').value.trim();
+    var infoDiv = document.getElementById('lookup-info');
+    infoDiv.textContent = "";
+    if(!city || !country) {
+        infoDiv.textContent = "Enter at least city/town AND country.";
+        return;
+    }
+    var url = "https://nominatim.openstreetmap.org/search?format=json&q="
+        + encodeURIComponent(city + ', ' + province + ', ' + country);
+    fetch(url)
+    .then(res => res.json())
+    .then(function(data){
+        if(data.length > 0) {
+            document.getElementById('latitude').value = data[0].lat;
+            document.getElementById('longitude').value = data[0].lon;
+            infoDiv.textContent = "Coordinates found: " + data[0].lat + ", " + data[0].lon;
+        } else {
+            infoDiv.textContent = "No location found for this entry.";
+        }
+    })
+    .catch(function(){
+        infoDiv.textContent = "Lookup failed. Try again.";
+    });
+};
+
+// Local save
 document.getElementById('save-btn').onclick = function() {
     var project = {
         name: document.getElementById('name').value,
@@ -62,6 +96,7 @@ document.getElementById('save-btn').onclick = function() {
         budget: parseFloat(document.getElementById('budget').value),
         province: document.getElementById('province').value,
         city: document.getElementById('city').value,
+        country: document.getElementById('country').value,
         latitude: parseFloat(document.getElementById('latitude').value) || null,
         longitude: parseFloat(document.getElementById('longitude').value) || null,
         description: document.getElementById('description').value,
