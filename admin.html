@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Admin Panel - Projects</title>
+    <style>
+        body { background: #f5f8fa; font-family: Segoe UI, Arial; padding: 2em; }
+        .admin-box { background: #fff; border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,0.08); padding: 2em; max-width: 410px; margin: 40px auto; }
+        input, select, textarea { width: 100%; margin-bottom: 16px; padding: 8px; font-size:1em; border-radius: 5px; border:1px solid #ccc;}
+        button { padding: 0.7em 2em; font-size:1em; border: none; border-radius: 8px; background: #37ad5c; color: #fff; cursor: pointer;}
+        .hidden { display:none;}
+        .error { color: #d21034; margin-bottom: 16px;}
+    </style>
+</head>
+<body>
+    <div class="admin-box">
+        <h2>Admin Login</h2>
+        <div id="login-box">
+            <input id="username" type="text" placeholder="Username" />
+            <input id="password" type="password" placeholder="Password" />
+            <button id="login-btn">Login</button>
+            <div id="login-error" class="error"></div>
+        </div>
+        <div id="form-box" class="hidden">
+            <h2>Add Project</h2>
+            <input id="name" placeholder="Project name">
+            <select id="status">
+                <option value="Planned">Planned</option>
+                <option value="In-Progress">In-Progress</option>
+            </select>
+            <input id="budget" type="number" placeholder="Budget (CAD)">
+            <input id="province" placeholder="Province">
+            <input id="latitude" type="number" placeholder="Latitude">
+            <input id="longitude" type="number" placeholder="Longitude">
+            <textarea id="description" placeholder="Description"></textarea>
+            <textarea id="reason" placeholder="Reason"></textarea>
+            <input id="planneddate" type="date" placeholder="Planned date">
+            <button id="save-btn">Save Project</button>
+        </div>
+    </div>
+<script>
+// Simple local login
+document.getElementById('login-btn').onclick = function() {
+    var u = document.getElementById('username').value;
+    var p = document.getElementById('password').value;
+    if (u === 'admin' && p === 'admin') {
+        document.getElementById('login-box').classList.add('hidden');
+        document.getElementById('form-box').classList.remove('hidden');
+    } else {
+        document.getElementById('login-error').innerText = "Wrong username or password!";
+    }
+};
+
+// Collect project info and send to map (you'll need a backend or API for persistent save)
+document.getElementById('save-btn').onclick = function() {
+    // Read data
+    var project = {
+        name: document.getElementById('name').value,
+        status: document.getElementById('status').value,
+        budget: parseFloat(document.getElementById('budget').value),
+        province: document.getElementById('province').value,
+        latitude: parseFloat(document.getElementById('latitude').value),
+        longitude: parseFloat(document.getElementById('longitude').value),
+        description: document.getElementById('description').value,
+        reason: document.getElementById('reason').value,
+        planneddate: document.getElementById('planneddate').value
+    };
+
+    // Save (for now, local only, you will need backend/API for actual update)
+    localStorage.setItem('pendingProject', JSON.stringify(project));
+    alert("Project ready to load! Switch back to main page.");
+    window.location.href = "index.html";
+};
+</script>
+</body>
+</html>
