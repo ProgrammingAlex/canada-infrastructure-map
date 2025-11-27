@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Infrastructure Project Manager</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">Government of Canada</a>
+
+            <button class="navbar-toggle" onclick="document.querySelector('.navbar-menu').classList.toggle('active')">
+                ☰
+            </button>
+
+            <ul class="navbar-menu">
+                <li class="navbar-item">
+                    <a href="index.html" class="navbar-link active">Home</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="partners.html" class="navbar-link">Partners</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="about.html" class="navbar-link">About</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="project_manager.html" class="navbar-link">Admin</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Project Manager</h1>
+
+        <div class="controls">
+            <div class="btn-group">
+                <button class="btn-primary" onclick="openAddModal()">➕ Add New Project</button>
+                <button class="btn-success" onclick="loadProjects()">🔄 Refresh</button>
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label>Filter by Province:</label>
+                    <select id="provinceFilter" onchange="applyFilters()">
+                        <option value="">All Provinces</option>
+                        <option value="Alberta">Alberta</option>
+                        <option value="British Columbia">British Columbia</option>
+                        <option value="Manitoba">Manitoba</option>
+                        <option value="New Brunswick">New Brunswick</option>
+                        <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                        <option value="Nova Scotia">Nova Scotia</option>
+                        <option value="Ontario">Ontario</option>
+                        <option value="Prince Edward Island">Prince Edward Island</option>
+                        <option value="Quebec">Quebec</option>
+                        <option value="Saskatchewan">Saskatchewan</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Filter by Status:</label>
+                    <select id="statusFilter" onchange="applyFilters()">
+                        <option value="">All Statuses</option>
+                        <option value="planning">Planning</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                        <option value="on-hold">On Hold</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Search:</label>
+                    <input type="text" id="searchInput" placeholder="Search projects..." oninput="applyFilters()">
+                </div>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="totalProjects">0</div>
+                <div class="stat-label">Total Projects</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalBudget">$0</div>
+                <div class="stat-label">Total Budget</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avgBudget">$0</div>
+                <div class="stat-label">Average Budget</div>
+            </div>
+        </div>
+
+        <div id="message"></div>
+        <div id="loading" class="loading" style="display: none;">Loading...</div>
+        <div id="projectsContainer" class="projects-grid"></div>
+    </div>
+
+    <!-- Add/Edit Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Project</h2>
+                <button class="close" onclick="closeModal()">×</button>
+            </div>
+            <form id="projectForm" onsubmit="saveProject(event)">
+                <div class="form-group">
+                    <label>Project Name *</label>
+                    <input type="text" id="projectName" required>
+                </div>
+                <div class="form-group">
+                    <label>Budget ($) *</label>
+                    <input type="number" id="projectBudget" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Status *</label>
+                    <select id="projectStatus" required>
+                        <option value="">Select status...</option>
+                        <option value="planning">Planning</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                        <option value="on-hold">On Hold</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Province *</label>
+                    <select id="projectProvince" required>
+                        <option value="">Select province...</option>
+                        <option value="Alberta">Alberta</option>
+                        <option value="British Columbia">British Columbia</option>
+                        <option value="Manitoba">Manitoba</option>
+                        <option value="New Brunswick">New Brunswick</option>
+                        <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                        <option value="Nova Scotia">Nova Scotia</option>
+                        <option value="Ontario">Ontario</option>
+                        <option value="Prince Edward Island">Prince Edward Island</option>
+                        <option value="Quebec">Quebec</option>
+                        <option value="Saskatchewan">Saskatchewan</option>
+                    </select>
+                    <div class="form-group">
+                        <label>City *</label>
+                        <input type="text" id="projectCity" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-success" style="width: 100%;">Save Project</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts/project_manager.js"></script>
+</body>
+
+</html>

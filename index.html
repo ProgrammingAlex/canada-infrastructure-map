@@ -1,28 +1,47 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
-    <title>Canadian Infrastructure Projects Map</title>
+    <title>Public Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <style>
-        body { background: #f5f8fa; font-family: Segoe UI, Arial, sans-serif; margin: 0; }
-        header { text-align: center; padding: 1em 0 0.5em 0; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
-        #controls { margin: 20px auto; text-align: center; }
-        #map { height: 600px; border-radius: 10px; box-shadow: 0 2px 24px rgba(0,0,0,0.12); margin: 0 auto 2em auto; width: 90vw; max-width: 1200px;}
-        .legend { background: white; border-radius: 6px; padding: 10px 16px; box-shadow: 0 1px 8px rgba(0,0,0,0.08); position: absolute; bottom: 24px; left: 24px; z-index: 1001; font-size: 1rem;}
-        .legend img { vertical-align: middle; margin-right: 6px;}
-        footer { text-align: center; padding: 1em 0; color: #6c757d; background: #fafbfd; font-size: 1em;}
-        @media (max-width: 700px) { #map { height: 350px;} }
-    </style>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
+
 <body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">Government of Canada</a>
+
+            <button class="navbar-toggle" onclick="document.querySelector('.navbar-menu').classList.toggle('active')">
+                ☰
+            </button>
+
+            <ul class="navbar-menu">
+                <li class="navbar-item">
+                    <a href="index.html" class="navbar-link active">Home</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="partners.html" class="navbar-link">Partners</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="about.html" class="navbar-link">About</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="project_manager.html" class="navbar-link">Admin</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <header>
-        <h1>Canadian Infrastructure Projects</h1>
+        <h1>Public Canada Infrastructure Map</h1>
         <p>A map of major planned infrastructure across Canada.<br>
-        <small>Select filters to explore the data.</small></p>
+            <small>Select filters to explore the data.</small>
+        </p>
     </header>
+
     <div id="controls">
-        <button id="admin-access-btn">Admin Panel</button>
         <label for="province-filter"><strong>Province</strong></label>
         <select id="province-filter">
             <option value="All">All</option>
@@ -43,20 +62,21 @@
             <option value="20">20</option>
         </select>
     </div>
+
     <div id="map"></div>
     <div class="legend" style="position:static;margin:0 auto 12px auto;text-align:center;box-shadow:none;">
-        <img src="marker-icon-blue.png" width="25" height="41" alt="Planned marker"><span style="margin-right:20px;"><strong>Planned</strong></span>
-        <img src="marker-icon-green.png" width="25" height="41" alt="In-Progress marker"><span><strong>In-Progress</strong></span>
+        <img src="assets/marker-icon-blue.png" width="25" height="41" alt="Planned marker"><span
+            style="margin-right:20px;"><strong>Planned</strong></span>
+        <img src="assets/marker-icon-green.png" width="25" height="41"
+            alt="In-Progress marker"><span><strong>In-Progress</strong></span>
     </div>
+
     <footer>
         &copy; 2025 Alex, Ethan, Nathan &mdash; Data from public sources. Last updated November 24, 2025.
     </footer>
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="map.js"></script>
-    <script>
-      document.getElementById("admin-access-btn").addEventListener("click", function() {
-        window.location.href = "admin.html";
-      });
-    </script>
+    <script src="scripts/map.js"></script>
 </body>
+
 </html>
