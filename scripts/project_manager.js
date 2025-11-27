@@ -1,8 +1,32 @@
 const API_URL = 'https://backend-api-production-e1a3.up.railway.app/api';
 let allProjects = [];
+let allCompanies = [];
 let currentEditId = null;
 
 window.onload = () => loadProjects();
+
+// === Tab switching ===
+function switchTab(tab) {
+    if (tab === 'projects') {
+        document.getElementById('projectsSection').style.display = 'block';
+        document.getElementById('companiesSection').style.display = 'none';
+        document.getElementById('projectsTab').style.background = '#1a73e8';
+        document.getElementById('projectsTab').style.color = 'white';
+        document.getElementById('companiesTab').style.background = '#eee';
+        document.getElementById('companiesTab').style.color = '#333';
+        loadProjects();
+    } else {
+        document.getElementById('projectsSection').style.display = 'none';
+        document.getElementById('companiesSection').style.display = 'block';
+        document.getElementById('projectsTab').style.background = '#eee';
+        document.getElementById('projectsTab').style.color = '#333';
+        document.getElementById('companiesTab').style.background = '#1a73e8';
+        document.getElementById('companiesTab').style.color = 'white';
+        loadCompanies();
+    }
+}
+
+// === Projects section ===
 
 // Load all projects
 async function loadProjects() {
@@ -182,8 +206,151 @@ async function deleteProject(id, name) {
     }
 }
 
-// Close modal on outside click
+// === Companies section ===
+
+// Load all companies
+async function loadCompanies() {
+    const loading = document.getElementById('companyLoading');
+    const container = document.getElementById('companiesContainer');
+    const messageDiv = document.getElementById('companyMessage');
+
+    loading.style.display = 'block';
+    container.innerHTML = '';
+    messageDiv.innerHTML = '';
+
+    try {
+        const response = await fetch(`${API_URL}/companies`);
+        if (!response.ok) throw new Error('Failed to load companies');
+
+        allCompanies = await response.json();
+        updateCompanyStats();
+        applyCompanyFilters();
+
+    } catch (error) {
+        messageDiv.innerHTML = `<div class="error">Error loading companies: ${error.message}</div>`;
+    } finally {
+        loading.style.display = 'none';
+    }
+}
+
+function applyCompanyFilters() {
+    const provinceFilter = document.getElementById('companyProvinceFilter').value;
+    const searchTerm = document.getElementById('companySearchInput').value.toLowerCase();
+
+    const filtered = allCompanies.filter(company => {
+        return (!provinceFilter || company.province === provinceFilter)
+            && (!searchTerm ||
+                company.name.toLowerCase().includes(searchTerm) ||
+                company.province.toLowerCase().includes(searchTerm) ||
+                company.city.toLowerCase().includes(searchTerm));
+    });
+
+    displayCompanies(filtered);
+}
+
+function displayCompanies(companies) {
+    const container = document.getElementById('companiesContainer');
+
+    if (companies.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <h3>No companies found</h3>
+                <p>Add a new company to get started!</p>
+            </div>`;
+        return;
+    }
+
+    container.innerHTML = companies.map(company => `
+        <div class="project-card">
+            <div class="project-name">${company.name}</div>
+            <div class="project-info"><strong>Province:</strong> ${company.province}</div>
+            <div class="project-info"><strong>City:</strong> ${company.city}</div>
+            ${company.email ? `<div class="project-info"><strong>Email:</strong> ${company.email}</div>` : ''}
+            ${company.number ? `<div class="project-info"><strong>Phone:</strong> ${company.number}</div>` : ''}
+            <div class="project-info"><strong>ID:</strong> ${company.id}</div>
+
+            <div class="project-actions">
+                <button class="btn-danger" onclick="deleteCompany(${company.id}, '${company.name.replace(/'/g, "\\'")}')">🗑️ Delete</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function updateCompanyStats() {
+    const total = allCompanies.length;
+    document.getElementById('totalCompanies').textContent = total;
+}
+
+function openAddCompanyModal() {
+    document.getElementById('companyModalTitle').textContent = 'Add New Company';
+    document.getElementById('companyForm').reset();
+    document.getElementById('companyModal').classList.add('active');
+}
+
+function closeCompanyModal() {
+    document.getElementById('companyModal').classList.remove('active');
+}
+
+async function saveCompany(event) {
+    event.preventDefault();
+    const messageDiv = document.getElementById('companyMessage');
+    messageDiv.innerHTML = '';
+
+    const name = document.getElementById('companyName').value;
+    const province = document.getElementById('companyProvince').value;
+    const city = document.getElementById('companyCity').value;
+    const email = document.getElementById('companyEmail').value;
+    const number = document.getElementById('companyNumber').value;
+
+    const companyData = { name, province, city, email, number };
+
+    try {
+        const response = await fetch(`${API_URL}/companies`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(companyData)
+        });
+
+        if (!response.ok) throw new Error('Failed to save company');
+
+        const result = await response.json();
+        messageDiv.innerHTML = `<div class="success">✓ Company "${result.name}" created successfully!</div>`;
+
+        closeCompanyModal();
+        loadCompanies();
+
+        setTimeout(() => messageDiv.innerHTML = '', 3000);
+
+    } catch (error) {
+        messageDiv.innerHTML = `<div class="error">Error saving company: ${error.message}</div>`;
+    }
+}
+
+async function deleteCompany(id, name) {
+    if (!confirm(`Delete "${name}"?`)) return;
+
+    const messageDiv = document.getElementById('companyMessage');
+    messageDiv.innerHTML = '';
+
+    try {
+        const response = await fetch(`${API_URL}/companies/${id}`, { method: 'DELETE' });
+
+        if (!response.ok) throw new Error('Failed to delete company');
+
+        messageDiv.innerHTML = `<div class="success">✓ Company deleted successfully!</div>`;
+        loadCompanies();
+
+        setTimeout(() => messageDiv.innerHTML = '', 3000);
+
+    } catch (error) {
+        messageDiv.innerHTML = `<div class="error">Error deleting company: ${error.message}</div>`;
+    }
+}
+
+// === Close modal on outside click ===
 window.onclick = function(e) {
-    const modal = document.getElementById('projectModal');
-    if (e.target === modal) closeModal();
+    const projectModal = document.getElementById('projectModal');
+    const companyModal = document.getElementById('companyModal');
+    if (e.target === projectModal) closeModal();
+    if (e.target === companyModal) closeCompanyModal();
 };
