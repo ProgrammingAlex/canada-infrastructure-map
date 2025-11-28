@@ -109,7 +109,7 @@ function displayProjects(projects) {
                 </span>
 
                 <div class="project-actions">
-                    <button class="btn-danger" onclick="deleteProject(${project.id}, '${project.name}')">🗑️ Delete</button>
+                    <button class="btn-danger" onclick="deleteProject(${project.id}, '${project.name}')">Delete</button>
                 </div>
             </div>
         `).join('');
@@ -284,7 +284,7 @@ function displayCompanies(companies) {
             <div class="project-info"><strong>ID:</strong> ${company.id}</div>
 
             <div class="project-actions">
-                <button class="btn-danger" onclick="deleteCompany(${company.id}, '${company.name.replace(/'/g, "\\'")}')">🗑️ Delete</button>
+                <button class="btn-danger" onclick="deleteCompany(${company.id}, '${company.name.replace(/'/g, "\\'")}')">Delete</button>
             </div>
         </div>
     `).join('');
@@ -423,7 +423,7 @@ function displayAssignments(assignments) {
             <div class="project-info"><strong>Created:</strong> ${new Date(assignment.created_at).toLocaleDateString()}</div>
 
             <div class="project-actions">
-                <button class="btn-danger" onclick="deleteAssignment(${assignment.id}, '${assignment.project_name}', '${assignment.company_name}')">🗑️ Delete</button>
+                <button class="btn-danger" onclick="deleteAssignment(${assignment.id}, '${assignment.project_name}', '${assignment.company_name}')">Delete</button>
             </div>
         </div>
     `).join('');
