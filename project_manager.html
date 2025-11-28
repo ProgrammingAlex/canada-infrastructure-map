@@ -41,7 +41,9 @@
             <button onclick="switchTab('projects')" id="projectsTab"
                 style="padding: 15px 30px; border: none; background: #1a73e8; color: white; cursor: pointer; font-size: 16px; border-radius: 5px 5px 0 0; margin-right: 5px;">Projects</button>
             <button onclick="switchTab('companies')" id="companiesTab"
-                style="padding: 15px 30px; border: none; background: #eee; color: #333; cursor: pointer; font-size: 16px; border-radius: 5px 5px 0 0;">Companies</button>
+                style="padding: 15px 30px; border: none; background: #eee; color: #333; cursor: pointer; font-size: 16px; border-radius: 5px 5px 0 0; margin-right: 5px;">Companies</button>
+            <button onclick="switchTab('assignments')" id="assignmentsTab"
+                style="padding: 15px 30px; border: none; background: #eee; color: #333; cursor: pointer; font-size: 16px; border-radius: 5px 5px 0 0;">Assignments</button>
         </div>
 
         <!-- PROJECTS SECTION -->
@@ -157,6 +159,37 @@
             <div id="companyLoading" class="loading" style="display: none;">Loading...</div>
             <div id="companiesContainer" class="projects-grid"></div>
         </div>
+
+        <!-- ASSIGNMENTS SECTION -->
+        <div id="assignmentsSection" style="display: none;">
+            <h2>Assignment Manager</h2>
+
+            <div class="controls">
+                <div class="btn-group">
+                    <button class="btn-primary" onclick="openAddAssignmentModal()">Add New Assignment</button>
+                    <button class="btn-success" onclick="loadAssignments()">Refresh</button>
+                </div>
+
+                <div class="filters">
+                    <div class="filter-group">
+                        <label>Search:</label>
+                        <input type="text" id="assignmentSearchInput" placeholder="Search assignments..."
+                            oninput="applyAssignmentFilters()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalAssignments">0</div>
+                    <div class="stat-label">Total Assignments</div>
+                </div>
+            </div>
+
+            <div id="assignmentMessage"></div>
+            <div id="assignmentLoading" class="loading" style="display: none;">Loading...</div>
+            <div id="assignmentsContainer" class="projects-grid"></div>
+        </div>
     </div>
 
     <!-- Add/Edit Project Modal -->
@@ -251,6 +284,31 @@
                     <input type="tel" id="companyNumber">
                 </div>
                 <button type="submit" class="btn-success" style="width: 100%;">Save Company</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Assignment Modal -->
+    <div id="assignmentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="assignmentModalTitle">Add New Assignment</h2>
+                <button class="close" onclick="closeAssignmentModal()">×</button>
+            </div>
+            <form id="assignmentForm" onsubmit="saveAssignment(event)">
+                <div class="form-group">
+                    <label>Project *</label>
+                    <select id="assignmentProject" required>
+                        <option value="">Select project...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Company *</label>
+                    <select id="assignmentCompany" required>
+                        <option value="">Select company...</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-success" style="width: 100%;">Save Assignment</button>
             </form>
         </div>
     </div>
