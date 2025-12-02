@@ -131,59 +131,49 @@
     "reason": "Improve public transit and urban mobility.",
     "planned_date": "2019-04-18"
   },
-  {
-  "name": "Trans Mountain Pipeline Expansion",
-  "status": "In-Progress",
-  "budget": 22000000000,
-  "province": "Alberta",
-  "latitude": 53.5461,
-  "longitude": -113.4938,
-  "description": "Expansion of the existing oil pipeline from Alberta to BC ports.",
-  "reason": "Boost export capacity for Canadian crude oil.",
-  "planned_date": "2017-05-01"
-},
-{
-  "name": "Ksi Lisims LNG Facility",
-  "status": "In-Progress",
-  "budget": 11000000000,
-  "province": "British Columbia",
-  "latitude": 54.4250,
-  "longitude": -130.1600,
-  "description": "Construction of floating natural gas export facilities on BC's north coast.",
-  "reason": "Expand LNG export and create jobs in the region.",
-  "planned_date": "2021-08-10"
-},
-{
-  "name": "North Coast Transmission Line",
-  "status": "In-Progress",
-  "budget": 1800000000,
-  "province": "British Columbia",
-  "latitude": 56.3325,
-  "longitude": -129.8512,
-  "description": "New high-voltage electricity transmission corridor in northwest BC.",
-  "reason": "Support clean growth and industrial expansion.",
-  "planned_date": "2023-03-15"
-},
-{
-  "name": "Port of Montreal Expansion",
-  "status": "In-Progress",
-  "budget": 950000000,
-  "province": "Quebec",
-  "latitude": 45.5454,
-  "longitude": -73.5500,
-  "description": "Major new marine terminal boosting shipping capacity in Montreal.",
-  "reason": "Increase trade volume and strengthen logistics.",
-  "planned_date": "2022-10-01"
-},
-{
-  "name": "Highway 413 (GTA West Corridor)",
-  "status": "In-Progress",
-  "budget": 6000000000,
-  "province": "Ontario",
-  "latitude": 43.7686,
-  "longitude": -79.6631,
-  "description": "Construction of a new highway in Toronto's western suburbs.",
-  "reason": "Improve traffic flow and support regional growth.",
-  "planned_date": "2023-01-20"
-}
-]
+  <projects>
+<root>
+  <name>Trans Mountain Pipeline Expansion</name>
+  <status>in-progress</status>
+  <budget>22000000000</budget>
+  <province>Alberta</province>
+  <latitude>53.5461</latitude>
+  <longitude>-113.4938</longitude>
+</root>
+  
+<root>
+  <name>Ksi Lisims LNG Facility</name>
+  <status>in-progress</status>
+  <budget>11000000000</budget>
+  <province>British Columbia</province>
+  <latitude>54.425</latitude>
+  <longitude>-130.16</longitude>
+</root>
+  
+<root>
+  <name>North Coast Transmission Line</name>
+  <status>in-progress</status>
+  <budget>1800000000</budget>
+  <province>British Columbia</province>
+  <latitude>56.3325</latitude>
+  <longitude>-129.8512</longitude>
+</root>
+  
+<root>
+  <name>Port of Montreal Expansion</name>
+  <status>in-progress</status>
+  <budget>950000000</budget>
+  <province>Quebec</province>
+  <latitude>45.5454</latitude>
+  <longitude>-73.55</longitude>
+</root>
+  
+<root>
+  <name>Highway 413 (GTA West Corridor)</name>
+  <status>in-progress</status>
+  <budget>6000000000</budget>
+  <province>Ontario</province>
+  <latitude>43.7686</latitude>
+  <longitude>-79.6631</longitude>
+</root>
+</projects>
