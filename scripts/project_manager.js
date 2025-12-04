@@ -220,6 +220,66 @@ async function deleteProject(id, name) {
     }
 }
 
+// FILE IMPORT HANDLING
+
+document.getElementById('actual-btn').addEventListener('change', handleFileImport);
+
+async function handleFileImport(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const messageDiv = document.getElementById('message');
+    messageDiv.innerHTML = '<div class="loading">Uploading and processing file...</div>';
+
+    try {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        const response = await fetch(`${API_URL}/projects/import`, {
+            method: 'POST',
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.error || 'Import failed');
+        }
+
+        let resultHTML = `<div class="success">
+            <strong>Import Complete!</strong><br>
+            Total projects: ${result.total}<br>
+            Successfully imported: ${result.successful}<br>
+            Failed: ${result.failed}
+        </div>`;
+
+        if (result.failed > 0 && result.details.failed.length > 0) {
+            resultHTML += '<div class="error"><strong>Failed Imports:</strong><br>';
+            result.details.failed.slice(0, 5).forEach(fail => {
+                resultHTML += `<strong>${fail.project}:</strong> ${fail.errors.join(', ')}<br>`;
+            });
+            if (result.details.failed.length > 5) {
+                resultHTML += `...and ${result.details.failed.length - 5} more errors`;
+            }
+            resultHTML += '</div>';
+        }
+
+        messageDiv.innerHTML = resultHTML;
+
+        if (result.successful > 0) {
+            loadProjects();
+        }
+
+        setTimeout(() => messageDiv.innerHTML = '', 10000);
+
+    } catch (error) {
+        messageDiv.innerHTML = `<div class="error">Import error: ${error.message}</div>`;
+        setTimeout(() => messageDiv.innerHTML = '', 5000);
+    }
+
+    event.target.value = '';
+}
+
 // ===== COMPANIES SECTION =====
 
 // Load all companies

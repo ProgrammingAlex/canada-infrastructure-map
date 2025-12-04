@@ -4,6 +4,7 @@
         <status>in-progress</status>
         <budget>22000000000</budget>
         <province>Alberta</province>
+        <city>Edmonton</city>
         <latitude>53.5461</latitude>
         <longitude>-113.4938</longitude>
     </project>
@@ -12,6 +13,7 @@
         <status>in-progress</status>
         <budget>11000000000</budget>
         <province>British Columbia</province>
+        <city>Prince Rupert</city>
         <latitude>54.425</latitude>
         <longitude>-130.16</longitude>
     </project>
@@ -20,6 +22,7 @@
         <status>in-progress</status>
         <budget>1800000000</budget>
         <province>British Columbia</province>
+        <city>Terrace</city>
         <latitude>56.3325</latitude>
         <longitude>-129.8512</longitude>
     </project>
@@ -28,6 +31,7 @@
         <status>in-progress</status>
         <budget>950000000</budget>
         <province>Quebec</province>
+        <city>Montreal</city>
         <latitude>45.5454</latitude>
         <longitude>-73.55</longitude>
     </project>
@@ -36,6 +40,7 @@
         <status>in-progress</status>
         <budget>6000000000</budget>
         <province>Ontario</province>
+        <city>Vaughan</city>
         <latitude>43.7686</latitude>
         <longitude>-79.6631</longitude>
     </project>
