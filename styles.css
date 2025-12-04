@@ -555,3 +555,18 @@ a:focus {
         grid-template-columns: 1fr;
     }
 }
+
+/* === TWO-COLUMN GOVERNMENT LAYOUT === */
+
+.two-column-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2em;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .two-column-layout {
+        grid-template-columns: 1fr;
+    }
+}
